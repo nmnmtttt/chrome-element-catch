@@ -1,0 +1,44 @@
+{
+  "manifest_version": 3,
+  "name": "捕获器",
+  "short_name": "locator",
+  "description": "捕获器",
+  "icons": {
+    "16": "static/icon/locator16.png",
+    "32": "static/icon/locator16.png",
+    "48": "static/icon/locator16.png",
+    "128": "static/icon/locator16.png"
+  },
+  "version": "1.0.0",
+  "permissions": [
+    "tabs",
+    "activeTab",
+    "webRequest",
+    "contextMenus",
+    "downloads",
+    "webNavigation",
+    "storage",
+    "debugger",
+    "history",
+    "unlimitedStorage",
+    "cookies",
+    "management"
+  ],
+  "content_scripts": [
+    {
+      "js": ["src/extensionSpace/content.ts"],
+      "matches": ["<all_urls>"],
+      "all_frames": true,
+      "match_about_blank": true,
+      "run_at": "document_start"
+    }
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self';"
+  },
+  "background": {
+    "service_worker": "src/extensionSpace/background.ts",
+    "type": "module"
+  },
+  "action": { "default_popup": "index.html" }
+}

@@ -1,0 +1,57 @@
+{
+  "manifest_version": 2,
+  "name": "捕获器",
+  "short_name": "locator",
+  "version": "1.0.0",
+  "description": "捕获器",
+  "browser_action": {
+    "default_icon": {
+      "16": "static/icon/locator16.ico",
+      "32": "static/icon/locator16.ico",
+      "48": "static/icon/locator16.ico",
+      "128": "static/icon/locator16.ico"
+    },
+    "default_title": "捕获器"
+  },
+  "icons": {
+    "16": "static/icon/locator16.ico",
+    "32": "static/icon/locator16.ico",
+    "48": "static/icon/locator16.ico",
+    "128": "static/icon/locator16.ico"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["vendors.js", "content.js"],
+      "css": ["static/style/style.css"],
+      "all_frames": true,
+      "run_at": "document_start"
+    }
+  ],
+  "background": {
+    "scripts": ["vendors.js", "background.js"]
+  },
+  "web_accessible_resources": ["inject.js", "static/*", "css/*", "iamges/*"],
+  "devtools_page": "static/devtool.html",
+  "permissions": [
+    "tabs",
+    "history",
+    "activeTab",
+    "webRequest",
+    "contextMenus",
+    "downloads",
+    "webNavigation",
+    "storage",
+    "debugger",
+    "webRequestBlocking",
+    "unlimitedStorage",
+    "cookies",
+    "management",
+    "superbrowser",
+    "<all_urls>"
+  ],
+  "externally_connectable": {
+    "ids": ["*"]
+  },
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
+}
